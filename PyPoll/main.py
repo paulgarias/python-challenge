@@ -18,6 +18,25 @@ with open(csv_file_path_1,newline="") as csvfile:
 		Candidate.append(row[2])
 
 
+totVotes = len(Candidate)
+dictCountCand = Counter(Candidate)
+
+
+print("Election Results")
+print("_______________________")
+print("Total Votes: "+str(len(Candidate)))
+print("_______________________")
+for x in dictCountCand.keys():
+	print(x+": "+"{:5.2f}".format(100.*dictCountCand[x]/float(totVotes))+"%"+" ("+str(dictCountCand[x])+")" )
+print("_______________________")
+print("Winner: " + max(dictCountCand,key=dictCountCand.get) )
+print("_______________________")
+
+VoterID = []
+County = []
+Candidate = []
+
+
 with open(csv_file_path_2,newline="") as csvfile:
 	csvreader = csv.reader(csvfile,delimiter=",")
 	next(csvreader,None)
